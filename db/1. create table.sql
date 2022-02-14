@@ -1,0 +1,1 @@
+create table info(type VARCHAR(10), title VARCHAR(50), url VARCHAR(100), date VARCHAR(10), constraint info_PK primary key(url,date));
