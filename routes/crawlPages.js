@@ -51,4 +51,4 @@ const crawlUrl = function (url) {
 //   });
 // };
 
-module.exports = { crawlUrl, crawlUrl2 };
+module.exports = { crawlUrl };
