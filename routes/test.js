@@ -26,23 +26,28 @@ router.post("/", function (req, res) {
 
     sql = "insert IGNORE into info(type, title, url, date) values(?)";
 
-    for (var i = 1; i <= 4; i++) {
-      data[i].forEach((element) => {
-        const type = element.type;
-        const title = element.title;
-        const url = element.url;
-        const date = element.date;
-        const array = [type, title, url, date];
-        db.query(sql, [array], function (err, rows, fields) {
-          if (err) {
-            return res.status(400).json({
-              status: "error",
-              error: "req cannot be empty",
-            });
-          }
+    const promise = new Promise((resolve, reject) => {
+      for (var i = 1; i <= 4; i++) {
+        data[i].forEach((element) => {
+          const type = element.type;
+          const title = element.title;
+          const url = element.url;
+          const date = element.date;
+          const array = [type, title, url, date];
+
+          db.query(sql, [array], function (err, rows, fields) {
+            if (err) {
+              return res.status(400).json({
+                status: "error",
+                error: "req cannot be empty",
+              });
+            } else resolve("Success");
+          });
         });
-      });
-    }
+      }
+      resolve("Completed!");
+    });
+    promise.then((value) => console.log(value));
   }
   getData();
 
