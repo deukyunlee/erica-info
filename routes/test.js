@@ -27,7 +27,7 @@ router.post("/", function (req, res) {
     sql = "insert IGNORE into info(type, title, url, date) values(?)";
 
     const promise = new Promise((resolve, reject) => {
-      for (var i = 1; i <= 4; i++) {
+      for (var i in data) {
         data[i].forEach((element) => {
           const type = element.type;
           const title = element.title;
